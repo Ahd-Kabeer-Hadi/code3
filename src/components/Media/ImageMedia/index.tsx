@@ -56,6 +56,11 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
         .join(', ')
 
+   if (!src) {
+    return null
+    // OR: return <img src="/placeholder.png" alt="placeholder" className={cn(imgClassName)} />
+  }
+  
   return (
     <picture className={cn(pictureClassName)}>
       <NextImage

@@ -20,6 +20,17 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { FAQ } from '@/blocks/FAQ/config'
+import { Services } from '@/blocks/Services/config'
+import { HeroBanner } from '@/blocks/HeroBanner/config'
+import { MissionAndValues } from '@/blocks/MissionAndValues/config'
+import { WhyWorkWithUs } from '@/blocks/WhyWorkWithUs/config'
+import { WhyChooseUsAbout } from '@/blocks/WhyChooseUsAbout/config'
+import { WhyChooseUs } from '@/blocks/WhyChooseUs/config'
+import { ContactUs } from '@/blocks/ContactUs/config'
+import { Careers } from '@/blocks/CareersBanner/config'
+import { AboutUsBanner } from '@/blocks/AboutUsBanner/config'
+import { TrustedBrands } from '@/blocks/TrustedBrands/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -75,7 +86,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FAQ, Services, HeroBanner, MissionAndValues, WhyWorkWithUs, WhyChooseUsAbout, WhyChooseUs, ContactUs, Careers, AboutUsBanner, TrustedBrands],
               required: true,
               admin: {
                 initCollapsed: true,

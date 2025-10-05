@@ -184,7 +184,59 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | {
+        title: string;
+        subtitle?: string | null;
+        badge?: string | null;
+        faqs: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faq';
+      }
+    | ServicesBlock
+    | HeroBannerBlock
+    | MissionAndValuesBlock
+    | WhyWorkWithUsBlock
+    | WhyChooseUsAboutBlock
+    | WhyChooseUsBlock
+    | ContactUsBlock
+    | {
+        title: string;
+        subtitle: string;
+        description?: string | null;
+        buttonText?: string | null;
+        buttonLink?: string | null;
+        teamImages?:
+          | {
+              image: string | Media;
+              alt?: string | null;
+              aspectRatioMobile?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
+              aspectRatioTablet?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
+              aspectRatioDesktop?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
+              hasTopMargin?: boolean | null;
+              isVisibleOnMobile?: boolean | null;
+              isVisibleOnTablet?: boolean | null;
+              isVisibleOnDesktop?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'careers';
+      }
+    | AboutUsBannerBlock
+    | TrustedBrandsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -729,6 +781,223 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock".
+ */
+export interface ServicesBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  infraService: {
+    label: string;
+    title: string;
+    description: string;
+    image?: (string | null) | Media;
+  };
+  digitalService: {
+    label: string;
+    title: string;
+    description: string;
+    image?: (string | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock".
+ */
+export interface HeroBannerBlock {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink?: string | null;
+  backgroundImage?: (string | null) | Media;
+  showLogo?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBanner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionAndValuesBlock".
+ */
+export interface MissionAndValuesBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  missionCard: {
+    icon: string;
+    title: string;
+    content: string;
+  };
+  valuesCard: {
+    icon: string;
+    title: string;
+    content: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'missionAndValues';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyWorkWithUsBlock".
+ */
+export interface WhyWorkWithUsBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  features?:
+    | {
+        icon: string;
+        title: string;
+        description: string;
+        colSpan: '4' | '5';
+        iconAlignment: 'left' | 'right';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyWorkWithUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsAboutBlock".
+ */
+export interface WhyChooseUsAboutBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  features?:
+    | {
+        icon: string;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyChooseUsAbout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsBlock".
+ */
+export interface WhyChooseUsBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  features?:
+    | {
+        title: string;
+        description: string;
+        image: string | Media;
+        alt: string;
+        colSpan: '4' | '5';
+        hasGradient?: boolean | null;
+        textColor?: ('white' | 'black') | null;
+        contentPosition?: ('bottom' | 'center') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyChooseUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock".
+ */
+export interface ContactUsBlock {
+  heading: string;
+  subtitle: string;
+  description: string;
+  formFields?: {
+    fullNameLabel?: string | null;
+    fullNamePlaceholder?: string | null;
+    emailLabel?: string | null;
+    emailPlaceholder?: string | null;
+    phoneLabel?: string | null;
+    phonePlaceholder?: string | null;
+    subjectLabel?: string | null;
+    messageLabel?: string | null;
+    messagePlaceholder?: string | null;
+    privacyText?: string | null;
+    privacyLink?: string | null;
+    submitButtonText?: string | null;
+  };
+  countryOptions?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  subjectOptions?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutUsBannerBlock".
+ */
+export interface AboutUsBannerBlock {
+  title: string;
+  subtitle: string;
+  description: string;
+  buttonText: string;
+  buttonLink?: string | null;
+  mobileImages?:
+    | {
+        image: string | Media;
+        alt: string;
+        aspectRatio?: ('aspect-4/3' | 'aspect-video' | 'aspect-square') | null;
+        id?: string | null;
+      }[]
+    | null;
+  desktopImages?:
+    | {
+        image: string | Media;
+        alt: string;
+        aspectRatio?: ('aspect-6/3' | 'aspect-4/3' | 'aspect-video' | 'aspect-square') | null;
+        hasMarginBottom?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutUsBanner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrustedBrandsBlock".
+ */
+export interface TrustedBrandsBlock {
+  title: string;
+  brands?:
+    | {
+        name: string;
+        logo: string | Media;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'trustedBrands';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1019,6 +1288,56 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        faq?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              badge?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        services?: T | ServicesBlockSelect<T>;
+        heroBanner?: T | HeroBannerBlockSelect<T>;
+        missionAndValues?: T | MissionAndValuesBlockSelect<T>;
+        whyWorkWithUs?: T | WhyWorkWithUsBlockSelect<T>;
+        whyChooseUsAbout?: T | WhyChooseUsAboutBlockSelect<T>;
+        whyChooseUs?: T | WhyChooseUsBlockSelect<T>;
+        contactUs?: T | ContactUsBlockSelect<T>;
+        careers?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              teamImages?:
+                | T
+                | {
+                    image?: T;
+                    alt?: T;
+                    aspectRatioMobile?: T;
+                    aspectRatioTablet?: T;
+                    aspectRatioDesktop?: T;
+                    hasTopMargin?: T;
+                    isVisibleOnMobile?: T;
+                    isVisibleOnTablet?: T;
+                    isVisibleOnDesktop?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutUsBanner?: T | AboutUsBannerBlockSelect<T>;
+        trustedBrands?: T | TrustedBrandsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1115,6 +1434,224 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock_select".
+ */
+export interface ServicesBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  infraService?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  digitalService?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock_select".
+ */
+export interface HeroBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  backgroundImage?: T;
+  showLogo?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionAndValuesBlock_select".
+ */
+export interface MissionAndValuesBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  missionCard?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        content?: T;
+      };
+  valuesCard?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        content?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyWorkWithUsBlock_select".
+ */
+export interface WhyWorkWithUsBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        colSpan?: T;
+        iconAlignment?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsAboutBlock_select".
+ */
+export interface WhyChooseUsAboutBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsBlock_select".
+ */
+export interface WhyChooseUsBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        alt?: T;
+        colSpan?: T;
+        hasGradient?: T;
+        textColor?: T;
+        contentPosition?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock_select".
+ */
+export interface ContactUsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subtitle?: T;
+  description?: T;
+  formFields?:
+    | T
+    | {
+        fullNameLabel?: T;
+        fullNamePlaceholder?: T;
+        emailLabel?: T;
+        emailPlaceholder?: T;
+        phoneLabel?: T;
+        phonePlaceholder?: T;
+        subjectLabel?: T;
+        messageLabel?: T;
+        messagePlaceholder?: T;
+        privacyText?: T;
+        privacyLink?: T;
+        submitButtonText?: T;
+      };
+  countryOptions?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  subjectOptions?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutUsBannerBlock_select".
+ */
+export interface AboutUsBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  mobileImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        aspectRatio?: T;
+        id?: T;
+      };
+  desktopImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        aspectRatio?: T;
+        hasMarginBottom?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrustedBrandsBlock_select".
+ */
+export interface TrustedBrandsBlockSelect<T extends boolean = true> {
+  title?: T;
+  brands?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        url?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1546,26 +2083,44 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  logo: string | Media;
+  megaMenu?: {
+    title?: string | null;
+    brandText?: string | null;
+    serviceCategories?:
+      | {
+          title: string;
+          services?:
+            | {
+                name: string;
+                link?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  mobileMenu?: {
+    sections?:
+      | {
+          title: string;
+          items?:
+            | {
+                name: string;
+                link?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  ctaButtons?: {
+    loginText?: string | null;
+    contactText?: string | null;
+    contactLink?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1575,6 +2130,7 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  description: string;
   navItems?:
     | {
         link: {
@@ -1595,6 +2151,25 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  contactInfo: {
+    phone: string;
+    email: string;
+    address: {
+      companyName: string;
+      building: string;
+      poBox: string;
+    };
+    workingHours: {
+      days: string;
+      time: string;
+    };
+  };
+  bottomBar: {
+    copyrightText: string;
+    madeBy: string;
+    exploreServicesText: string;
+    exploreServicesImage?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1603,6 +2178,60 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  megaMenu?:
+    | T
+    | {
+        title?: T;
+        brandText?: T;
+        serviceCategories?:
+          | T
+          | {
+              title?: T;
+              services?:
+                | T
+                | {
+                    name?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  mobileMenu?:
+    | T
+    | {
+        sections?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  ctaButtons?:
+    | T
+    | {
+        loginText?: T;
+        contactText?: T;
+        contactLink?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  description?: T;
   navItems?:
     | T
     | {
@@ -1617,28 +2246,32 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
- */
-export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  contactInfo?:
     | T
     | {
-        link?:
+        phone?: T;
+        email?: T;
+        address?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              companyName?: T;
+              building?: T;
+              poBox?: T;
             };
-        id?: T;
+        workingHours?:
+          | T
+          | {
+              days?: T;
+              time?: T;
+            };
+      };
+  bottomBar?:
+    | T
+    | {
+        copyrightText?: T;
+        madeBy?: T;
+        exploreServicesText?: T;
+        exploreServicesImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;
