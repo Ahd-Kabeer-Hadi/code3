@@ -18,11 +18,11 @@ export const WhyChooseUsBlock: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={cn('min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden', className)}
+      className={cn('py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden', className)}
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-[64px]">
           <div className="inline-block bg-[#C90E1D] border border-[#FF3B4B] text-white text-xs font-semibold px-5 py-2 rounded-full mb-6 uppercase tracking-wider">
             {badge}
           </div>
@@ -46,7 +46,7 @@ export const WhyChooseUsBlock: React.FC<Props> = ({
             const heightClass =
               feature.colSpan === '5'
                 ? 'sm:h-[20rem] lg:h-[26rem] h-[26rem]'
-                : 'sm:h-[20rem] lg:h-[26rem] h-88'
+                : 'sm:h-[20rem] lg:h-[26rem] h-[21rem]'
             const textColorClass = feature.textColor === 'black' ? 'text-black' : 'text-white'
             const contentPositionClass =
               feature.contentPosition === 'center' ? 'lg:bottom-[53%]' : 'bottom-12'
@@ -96,7 +96,7 @@ export const WhyChooseUsBlock: React.FC<Props> = ({
                     >
                       <p
                         className={cn(
-                          'text-lg lg:text-xl leading-6 font-medium',
+                          'text-md lg:text-xl leading-6 font-medium',
                           feature.colSpan === '4' ? 'max-w-sm' : 'max-w-sm lg:max-w-xs',
                           feature.colSpan === '5' && index === 2 && 'lg:max-w-[12rem]',
                         )}

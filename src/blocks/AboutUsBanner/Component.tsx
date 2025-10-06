@@ -22,8 +22,8 @@ export const AboutUsBannerBlock: React.FC<Props> = ({
   return (
     <div className={cn('', className)}>
       {/* Mobile Layout */}
-      <div className="md:hidden py-8 bg-[linear-gradient(-70deg,#000000f1_0%,#C90E1D_12%,transparent_35%)]">
-        <div className="mx-auto px-4 py-8">
+      <div className="md:hidden pb-8 bg-[linear-gradient(-70deg,#000000f1_0%,#C90E1D_12%,transparent_35%)]">
+        <div className="mx-auto px-4 pb-8">
           {/* Header Section */}
           <div className="mb-8">
             <h1 className="text-7xl md:text-[6rem] md:col-span-2 font-semibold text-[#C90E1D]">

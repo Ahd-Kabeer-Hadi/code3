@@ -17,8 +17,8 @@ export const HeroBannerBlock: React.FC<Props> = ({
   showLogo = true 
 }) => {
   return (
-    <div className={cn('flex items-center justify-center w-full px-4 sm:px-6 lg:px-8 pt-[1rem] pb-[5rem]', className)}>
-      <div className="relative mx-auto w-full max-w-6xl rounded-[32px] text-center">
+    <div className={cn('max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[1rem] pb-[3rem] md:pb-[4rem] xl:pb-[5rem]', className)}>
+      <div className="relative mx-auto min-w-full max-w-6xl rounded-[32px] text-center">
         {backgroundImage && (
           <div className="absolute inset-0 z-[-1] rounded-[32px] overflow-hidden">
             <img
@@ -81,7 +81,7 @@ export const HeroBannerBlock: React.FC<Props> = ({
           )}
 
           {title && (
-            <h1 className="mx-auto max-w-xl text-3xl font-bold leading-tight text-gray-900 md:text-4xl lg:max-w-2xl lg:text-5xl">
+            <h1 className="mx-auto max-w-xl text-3xl font-bold lg:leading-snug text-gray-900 md:text-4xl lg:max-w-2xl lg:text-5xl">
               {title}
             </h1>
           )}

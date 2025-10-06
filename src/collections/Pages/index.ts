@@ -31,6 +31,7 @@ import { ContactUs } from '@/blocks/ContactUs/config'
 import { Careers } from '@/blocks/CareersBanner/config'
 import { AboutUsBanner } from '@/blocks/AboutUsBanner/config'
 import { TrustedBrands } from '@/blocks/TrustedBrands/config'
+import { CurrentOpenings } from '@/blocks/CurrentOpenings/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -86,7 +87,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FAQ, Services, HeroBanner, MissionAndValues, WhyWorkWithUs, WhyChooseUsAbout, WhyChooseUs, ContactUs, Careers, AboutUsBanner, TrustedBrands],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, FAQ, Services, HeroBanner, MissionAndValues, WhyWorkWithUs, WhyChooseUsAbout, WhyChooseUs, ContactUs, Careers, AboutUsBanner, TrustedBrands, CurrentOpenings],
               required: true,
               admin: {
                 initCollapsed: true,
