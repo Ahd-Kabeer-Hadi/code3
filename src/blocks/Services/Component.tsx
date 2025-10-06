@@ -127,5 +127,5 @@ export const ServicesBlock: React.FC<Props> = ({
         </div>
       </div>
     </section>
-  )
+)
 }
