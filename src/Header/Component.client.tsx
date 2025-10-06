@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 
 interface HeaderClientProps {
   data: Header
+  navigationPages?: any[]
 }
 
 function MenuSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -37,7 +38,7 @@ function MenuItem({ children }: { children: React.ReactNode }) {
   )
 }
 
-export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
+export const HeaderClient: React.FC<HeaderClientProps> = ({ data, navigationPages = [] }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
@@ -50,6 +51,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const megaMenu = data?.megaMenu
   const mobileMenu = data?.mobileMenu
   const ctaButtons = data?.ctaButtons
+
+  // Merge CMS navigation items with auto-generated ones
+  const allNavItems = [...(data?.navItems || []), ...navigationPages]
 
   useEffect(() => {
     setHeaderTheme(null)
@@ -209,9 +213,31 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
           {/* Menu content */}
           <div className="flex-1 flex flex-col justify-start px-4 py-6 text-white space-y-2 overflow-auto">
-            <Link href="/about" className="mb-3 text-base font-semibold">
-              About Us
-            </Link>
+            {/* Dynamic Navigation Items for Mobile */}
+            {allNavItems
+              .filter((item: any) => item.showInMobile !== false)
+              .map((item: any, index: number) => (
+                <Link key={index} href={item.link} className="mb-3 text-base font-semibold">
+                  {item.label}
+                </Link>
+              ))}
+
+            {/* Fallback Navigation Items for Mobile */}
+            {allNavItems.length === 0 && (
+              <>
+                <Link href="/about-us" className="mb-3 text-base font-semibold">
+                  About Us
+                </Link>
+                <Link href="/infra-services" className="mb-3 text-base font-semibold">
+                  Infra Services
+                </Link>
+                <Link href="/careers" className="mb-3 text-base font-semibold">
+                  Careers
+                </Link>
+              </>
+            )}
+
+            {/* Mobile Menu Sections */}
             {mobileMenu?.sections?.map((section: any, index: number) => (
               <MenuSection key={index} title={section.title}>
                 {section.items?.map((item: any, itemIndex: number) => (
@@ -221,9 +247,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 ))}
               </MenuSection>
             ))}
-            <Link href="/careers" className="mt-3 text-base font-semibold">
-              Careers
-            </Link>
           </div>
 
           {/* Buttons */}

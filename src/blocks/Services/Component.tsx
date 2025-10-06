@@ -3,8 +3,8 @@
 import type { ServicesBlock as ServicesBlockProps } from 'src/payload-types'
 
 import { cn } from '@/utilities/ui'
-import React, { useState } from 'react'
 import Image from 'next/image'
+import React from 'react'
 
 type Props = {
   className?: string
@@ -18,9 +18,8 @@ export const ServicesBlock: React.FC<Props> = ({
   infraService,
   digitalService,
 }) => {
-  const [activeTab, setActiveTab] = useState<'infra' | 'digital'>('infra')
-
-  const currentService = activeTab === 'infra' ? infraService : digitalService
+  // Always show infrastructure service for now
+  const currentService = infraService
 
   // Debug: Log current service data
   React.useEffect(() => {
@@ -37,13 +36,8 @@ export const ServicesBlock: React.FC<Props> = ({
     }
   }, [currentService])
 
-  // Handle tab changes
-  const handleTabClick = (tab: 'infra' | 'digital') => {
-    setActiveTab(tab)
-  }
-
   return (
-    <section className={cn('min-h-screen bg-white py-16 px-4 relative', className)}>
+    <section className={cn('bg-white py-16 lg:py-20 px-4 relative', className)}>
       {/* Header */}
       <div className="text-center mb-12">
         <button className="bg-[#C90E1D] text-white px-3 border border-[#FF3B4B] py-2 rounded-full text-sm font-medium mb-6">
@@ -51,32 +45,6 @@ export const ServicesBlock: React.FC<Props> = ({
         </button>
         <h1 className="text-3xl md:text-5xl font-semibold leading-[130%] mb-4">{title}</h1>
         <p className="text-[#535862] max-w-2xl mx-auto">{subtitle}</p>
-      </div>
-
-      {/* Tab Buttons */}
-      <div className="flex justify-center gap-2 mb-16 mx-auto border border-gray-200 rounded-full bg-white w-fit p-1">
-        <button
-          onClick={() => handleTabClick('infra')}
-          className={`px-4 py-3 rounded-full font-medium text-base transition-all duration-200 ${
-            activeTab === 'infra'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-          } opacity-100`}
-          style={{ border: activeTab === 'infra' ? '2px solid #e5e7eb' : 'none' }}
-        >
-          Infra Services
-        </button>
-        <button
-          onClick={() => handleTabClick('digital')}
-          className={`px-4 py-3 rounded-full font-medium text-base transition-all duration-200 ${
-            activeTab === 'digital'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-          } opacity-100`}
-          style={{ border: activeTab === 'digital' ? '2px solid #e5e7eb' : 'none' }}
-        >
-          Digital Services
-        </button>
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -87,7 +55,7 @@ export const ServicesBlock: React.FC<Props> = ({
             <div className="absolute md:block hidden left-0 top-0 bottom-0 w-2 rounded-full bg-gradient-to-b from-[#BE251F] to-transparent"></div>
 
             {/* Inner Content */}
-            <div className="flex flex-col justify-center h-full md:ml-12">
+            <div className="flex flex-col justify-between gap-5 h-full md:ml-12">
               {/* Icon */}
               <div className="w-16 h-16 bg-[#FF1800] border border-[#FF919A] rounded-full flex items-center justify-center mb-8">
                 <svg
@@ -129,7 +97,9 @@ export const ServicesBlock: React.FC<Props> = ({
                 src={
                   typeof currentService?.image === 'string'
                     ? currentService.image
-                    : currentService?.image?.url || ''
+                    : (currentService?.image as { url?: string; filename?: string })?.url ||
+                      (currentService?.image as { url?: string; filename?: string })?.filename ||
+                      ''
                 }
                 alt={currentService?.label || 'Service image'}
                 className="absolute aspect-square inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
@@ -145,10 +115,10 @@ export const ServicesBlock: React.FC<Props> = ({
               
             ) : (
               <div
-                className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out"
+                className="absolute w-0 h-0 bg-cover bg-center transition-all duration-700 ease-in-out"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  transform: `scale(1)`,
+                  transform: 'scale(1)',
                 }}
               />
             )}

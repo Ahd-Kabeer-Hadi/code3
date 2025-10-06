@@ -20,13 +20,13 @@ export const CareersBlock: React.FC<Props> = ({
   // Helper function to generate responsive classes for each team member
   const getResponsiveClasses = (member: NonNullable<typeof teamImages>[number]) => {
     const aspectMobile = member.aspectRatioMobile || 'aspect-video'
-    const aspectTablet = member.aspectRatioTablet || 'aspect-[2/3]'
-    const aspectDesktop = member.aspectRatioDesktop || 'aspect-[2/3]'
+    const aspectTablet =  'aspect-[2/3]'
+    const aspectDesktop =  'aspect-[2/3]'
 
     return cn(
-      aspectMobile,
-      `sm:${aspectTablet}`,
-      `lg:${aspectDesktop}`,
+      `aspect-[1/1]`,
+      `sm:aspect-[2/3]`,
+      `lg:aspect-[2/3]`,
       member.hasTopMargin && 'sm:mt-8 xl:mt-10',
       member.isVisibleOnMobile ? 'block' : 'hidden',
       member.isVisibleOnTablet ? 'sm:block' : 'sm:hidden',

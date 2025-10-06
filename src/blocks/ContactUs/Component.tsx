@@ -53,7 +53,7 @@ export const ContactUsBlock: React.FC<Props> = ({
           {/* Left Side - Header (Mobile: Top, Desktop: Left) */}
           <div className="flex flex-col justify-center py-[2rem] px-[2rem] xl:pl-[8rem]">
             {/* Large Contact Us Heading */}
-            <h1 className="text-[4rem] text-[#C90E1D] lg:text-[6rem] font-bold leading-tight mb-6">
+            <h1 className="text-[4rem] text-[#C90E1D] lg:text-[6rem] font-bold leading-tight mb-6 z-[2]">
               {heading.split(' ').map((word, index) => (
                 <React.Fragment key={index}>
                   {word}

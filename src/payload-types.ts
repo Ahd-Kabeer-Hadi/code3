@@ -220,9 +220,6 @@ export interface Page {
           | {
               image: string | Media;
               alt?: string | null;
-              aspectRatioMobile?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
-              aspectRatioTablet?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
-              aspectRatioDesktop?: ('aspect-video' | 'aspect-square' | 'aspect-[2/3]' | 'aspect-[3/2]') | null;
               hasTopMargin?: boolean | null;
               isVisibleOnMobile?: boolean | null;
               isVisibleOnTablet?: boolean | null;
@@ -236,6 +233,7 @@ export interface Page {
       }
     | AboutUsBannerBlock
     | TrustedBrandsBlock
+    | CurrentOpeningsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -998,6 +996,40 @@ export interface TrustedBrandsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CurrentOpeningsBlock".
+ */
+export interface CurrentOpeningsBlock {
+  badge: string;
+  title: string;
+  subtitle: string;
+  showFilter?: boolean | null;
+  departments?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  jobListings?:
+    | {
+        department: string;
+        title: string;
+        category: string;
+        categoryColor: 'blue' | 'pink' | 'green' | 'orange';
+        description: string;
+        location: string;
+        type: string;
+        viewJobText: string;
+        viewJobLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'currentOpenings';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1324,9 +1356,6 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     image?: T;
                     alt?: T;
-                    aspectRatioMobile?: T;
-                    aspectRatioTablet?: T;
-                    aspectRatioDesktop?: T;
                     hasTopMargin?: T;
                     isVisibleOnMobile?: T;
                     isVisibleOnTablet?: T;
@@ -1338,6 +1367,7 @@ export interface PagesSelect<T extends boolean = true> {
             };
         aboutUsBanner?: T | AboutUsBannerBlockSelect<T>;
         trustedBrands?: T | TrustedBrandsBlockSelect<T>;
+        currentOpenings?: T | CurrentOpeningsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1650,6 +1680,39 @@ export interface TrustedBrandsBlockSelect<T extends boolean = true> {
         name?: T;
         logo?: T;
         url?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CurrentOpeningsBlock_select".
+ */
+export interface CurrentOpeningsBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  showFilter?: T;
+  departments?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  jobListings?:
+    | T
+    | {
+        department?: T;
+        title?: T;
+        category?: T;
+        categoryColor?: T;
+        description?: T;
+        location?: T;
+        type?: T;
+        viewJobText?: T;
+        viewJobLink?: T;
         id?: T;
       };
   id?: T;
@@ -2084,6 +2147,14 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: string;
   logo: string | Media;
+  navItems?:
+    | {
+        label: string;
+        link: string;
+        showInMobile?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   megaMenu?: {
     title?: string | null;
     brandText?: string | null;
@@ -2179,6 +2250,14 @@ export interface Footer {
  */
 export interface HeaderSelect<T extends boolean = true> {
   logo?: T;
+  navItems?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        showInMobile?: T;
+        id?: T;
+      };
   megaMenu?:
     | T
     | {
