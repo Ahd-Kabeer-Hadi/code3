@@ -1,0 +1,161 @@
+'use client'
+
+import type { ServicesBlock as ServicesBlockProps } from 'src/payload-types'
+
+import { cn } from '@/utilities/ui'
+import React, { useState } from 'react'
+
+type Props = {
+  className?: string
+} & ServicesBlockProps
+
+export const ServicesBlock: React.FC<Props> = ({
+  className,
+  badge = 'OUR SERVICES',
+  title = 'Your Technology Partner in Every Step',
+  subtitle = 'Whether you need a secure IT backbone or a strong digital presence, we provide tailored solutions under one roof.',
+  infraService,
+  digitalService,
+}) => {
+  const [activeTab, setActiveTab] = useState<'infra' | 'digital'>('infra')
+
+  const currentService = activeTab === 'infra' ? infraService : digitalService
+
+  // Debug: Log current service data
+  React.useEffect(() => {
+    if (currentService) {
+      console.log('Current service:', currentService)
+      console.log('Image data:', currentService.image)
+      if (currentService.image) {
+        const imageUrl =
+          typeof currentService.image === 'string'
+            ? currentService.image
+            : currentService.image.url || ''
+        console.log('Constructed image URL:', imageUrl)
+      }
+    }
+  }, [currentService])
+
+  // Handle tab changes
+  const handleTabClick = (tab: 'infra' | 'digital') => {
+    setActiveTab(tab)
+  }
+
+  return (
+    <section className={cn('min-h-screen bg-white py-16 px-4 relative', className)}>
+      {/* Header */}
+      <div className="text-center mb-12">
+        <button className="bg-[#C90E1D] text-white px-3 border border-[#FF3B4B] py-2 rounded-full text-sm font-medium mb-6">
+          {badge}
+        </button>
+        <h1 className="text-3xl md:text-5xl font-semibold leading-[130%] mb-4">{title}</h1>
+        <p className="text-[#535862] max-w-2xl mx-auto">{subtitle}</p>
+      </div>
+
+      {/* Tab Buttons */}
+      <div className="flex justify-center gap-2 mb-16 mx-auto border border-gray-200 rounded-full bg-white w-fit p-1">
+        <button
+          onClick={() => handleTabClick('infra')}
+          className={`px-4 py-3 rounded-full font-medium text-base transition-all duration-200 ${
+            activeTab === 'infra'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+          } opacity-100`}
+          style={{ border: activeTab === 'infra' ? '2px solid #e5e7eb' : 'none' }}
+        >
+          Infra Services
+        </button>
+        <button
+          onClick={() => handleTabClick('digital')}
+          className={`px-4 py-3 rounded-full font-medium text-base transition-all duration-200 ${
+            activeTab === 'digital'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+          } opacity-100`}
+          style={{ border: activeTab === 'digital' ? '2px solid #e5e7eb' : 'none' }}
+        >
+          Digital Services
+        </button>
+      </div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-stretch">
+          {/* Left Side - Text Content */}
+          <div className="relative flex flex-col justify-between">
+            {/* Decorative Line */}
+            <div className="absolute md:block hidden left-0 top-0 bottom-0 w-2 rounded-full bg-gradient-to-b from-[#BE251F] to-transparent"></div>
+
+            {/* Inner Content */}
+            <div className="flex flex-col justify-center h-full md:ml-12">
+              {/* Icon */}
+              <div className="w-16 h-16 bg-[#FF1800] border border-[#FF919A] rounded-full flex items-center justify-center mb-8">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Content */}
+              <div className="transition-all duration-500 ease-in-out">
+                <span className="inline-block bg-[#F5D9D9] text-red-600 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+                  {currentService?.label}
+                </span>
+                <h2 className="text-3xl md:text-4xl font-semibold text-[#0D121C] mb-6 transition-opacity duration-500">
+                  {currentService?.title}
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed transition-opacity duration-500">
+                  {currentService?.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Image */}
+          <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500">
+            {currentService?.image ? (
+              <img
+                src={
+                  typeof currentService?.image === 'string'
+                    ? currentService.image
+                    : currentService?.image?.url || ''
+                }
+                alt={currentService?.label || 'Service image'}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.currentTarget.src)
+                  // Fallback to gradient if image fails to load
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            ) : (
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  transform: `scale(1)`,
+                }}
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-white text-center">
+                <p className="text-sm opacity-70">Image: {currentService?.label}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
