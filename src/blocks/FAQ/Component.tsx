@@ -84,11 +84,11 @@ export const FAQBlock: React.FC<FAQBlockProps> = ({
   }
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white py-6 lg:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 justify-start">
           {/* Left Column: Title Section */}
-          <div className="text-center md:text-left max-w-sm mx-auto mt-10 ">
+          <div className="text-center md:text-left max-w-sm mx-auto">
             {badge && (
               <span className="inline-block bg-[#C90E1D] border border-[#FF3B4B] text-white text-sm font-semibold px-3 py-2 rounded-full uppercase">
                 {badge}
@@ -102,7 +102,7 @@ export const FAQBlock: React.FC<FAQBlockProps> = ({
 
           {/* Right Column: Accordion Section */}
           <div className="col-span-2">
-            <div className="p-6 sm:p-8 rounded-lg">
+            <div className="p-4 sm:p-8 rounded-lg">
               {faqs.map((faq, index) => (
                 <FaqItem
                   key={index}

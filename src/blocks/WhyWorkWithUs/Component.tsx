@@ -25,7 +25,7 @@ export const WhyWorkWithUsBlock: React.FC<Props> = ({
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-w-[15rem] sm:max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-w-[17rem] sm:max-w-2xl mx-auto">
             {title}
           </h1>
 
@@ -69,21 +69,12 @@ export const WhyWorkWithUsBlock: React.FC<Props> = ({
 
               <div>
                 {/* Title */}
-                <h2 className="text-2xl lg:text-3xl font-semibold mt-14 mb-4 uppercase tracking-wider">
-                  {feature.title?.split(' ').map((word, wordIndex) => (
-                    <React.Fragment key={wordIndex}>
-                      {word}
-                      {wordIndex < (feature.title?.split(' ').length || 0) - 1 &&
-                        (wordIndex === 1 || (feature.title?.split(' ').length || 0) > 3) && <br />}
-                      {wordIndex < (feature.title?.split(' ').length || 0) - 1 &&
-                        !(wordIndex === 1 || (feature.title?.split(' ').length || 0) > 3) &&
-                        ' '}
-                    </React.Fragment>
-                  ))}
+                <h2 className="text-2xl lg:text-3xl max-w-xs font-semibold mt-14 mb-4 uppercase tracking-wider">
+                  {feature.title}
                 </h2>
 
                 {/* Content */}
-                <p className="text-gray-800 lg:text-xl leading-relaxed max-w-lg">
+                <p className="text-gray-800 lg:text-lg max-w-md">
                   {feature.description}
                 </p>
               </div>

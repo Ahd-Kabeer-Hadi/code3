@@ -16,6 +16,31 @@ export const Header: GlobalConfig = {
       required: true,
     },
     {
+      name: 'navItems',
+      type: 'array',
+      label: 'Navigation Items',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          label: 'Label',
+          required: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+          label: 'Link',
+          required: true,
+        },
+        {
+          name: 'showInMobile',
+          type: 'checkbox',
+          label: 'Show in Mobile Menu',
+          defaultValue: true,
+        },
+      ],
+    },
+    {
       name: 'megaMenu',
       type: 'group',
       label: 'Mega Menu Configuration',
