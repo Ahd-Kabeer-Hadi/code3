@@ -4,6 +4,7 @@ import type { ServicesBlock as ServicesBlockProps } from 'src/payload-types'
 
 import { cn } from '@/utilities/ui'
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 type Props = {
   className?: string
@@ -124,20 +125,24 @@ export const ServicesBlock: React.FC<Props> = ({
           {/* Right Side - Image */}
           <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500">
             {currentService?.image ? (
-              <img
+              <Image
                 src={
                   typeof currentService?.image === 'string'
                     ? currentService.image
                     : currentService?.image?.url || ''
                 }
                 alt={currentService?.label || 'Service image'}
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
+                className="absolute aspect-square inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
                 onError={(e) => {
                   console.error('Image failed to load:', e.currentTarget.src)
                   // Fallback to gradient if image fails to load
                   e.currentTarget.style.display = 'none'
                 }}
+                width={800}
+                height={500}
+
               />
+              
             ) : (
               <div
                 className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out"
@@ -147,12 +152,7 @@ export const ServicesBlock: React.FC<Props> = ({
                 }}
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-white text-center">
-                <p className="text-sm opacity-70">Image: {currentService?.label}</p>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
