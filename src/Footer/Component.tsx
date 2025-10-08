@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import type { Footer } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import Image from 'next/image'
 
 export async function Footer() {
   const footerData = (await getCachedGlobal('footer', 1)()) as Footer
@@ -125,7 +126,7 @@ export async function Footer() {
       {/* Bottom Bar */}
       <div className="grid gap-8 md:gap-4 max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <button className="hidden md:block hover:cursor-pointer md:col-span-2 mt-auto transition-all duration-300 active:scale-95 rounded-full bg-[#CB101F] w-max p-3">
+          <button type='button' className="hidden md:block hover:cursor-pointer md:col-span-2 mt-auto transition-all duration-300 active:scale-95 rounded-full bg-[#CB101F] w-max p-3">
             <svg
               width="14"
               height="16"
@@ -135,6 +136,7 @@ export async function Footer() {
             >
               <path d="M7 16L7 2M7 2L1 8M7 2L13 8" stroke="#ECEEEC" strokeWidth="1.5" />
             </svg>
+            <p className='hidden'>jo</p>
           </button>
 
           <div className="hidden md:block text-gray-300 mt-auto text-sm">
@@ -190,6 +192,7 @@ export async function Footer() {
             >
               <path d="M7 16L7 2M7 2L1 8M7 2L13 8" stroke="#ECEEEC" strokeWidth="1.5" />
             </svg>
+            <p className='hidden'>jo</p>
           </button>
         </div>
       </div>

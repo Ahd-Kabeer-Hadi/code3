@@ -102,14 +102,17 @@ export const ServicesBlock: React.FC<Props> = ({
                       ''
                 }
                 alt={currentService?.label || 'Service image'}
-                fill
-                className="object-cover transition-all duration-700 ease-in-out"
+                className="absolute aspect-square inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
                 onError={(e) => {
                   console.error('Image failed to load:', e.currentTarget.src)
                   // Fallback to gradient if image fails to load
                   e.currentTarget.style.display = 'none'
                 }}
+                width={800}
+                height={500}
+
               />
+              
             ) : (
               <div
                 className="absolute w-0 h-0 bg-cover bg-center transition-all duration-700 ease-in-out"
@@ -119,15 +122,10 @@ export const ServicesBlock: React.FC<Props> = ({
                 }}
               />
             )}
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div> */}
-            {/* <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-white text-center">
-                <p className="text-sm opacity-70">Image: {currentService?.label}</p>
-              </div>
-            </div> */}
-          </div>
+           
+          </div>
         </div>
       </div>
     </section>
-  )
+)
 }
