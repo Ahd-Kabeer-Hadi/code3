@@ -95,7 +95,7 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
       <section className={cn('py-12 md:py-16 px-4 bg-white', className)}>
         <div className="container mx-auto max-w-7xl">
           <div className="text-center">
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-xs md:text-sm font-semibold text-gray-800 mb-2">
               {title}
             </h2>
             <p className="text-gray-500">No brands to display</p>
@@ -110,7 +110,7 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-sm md:text-[20px] font-semibold text-gray-800 mb-4">
             {title}
           </h2>
         </div>
@@ -118,8 +118,8 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
         {/* Infinite Scrolling Brands Container */}
         <div className="relative w-full">
           {/* Gradient fade masks */}
-          <div className="absolute left-0 top-0 w-16 md:w-24 h-full bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-16 md:w-24 h-full bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 w-16 md:w-24 h-full bg-gradient-to-r from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-16 md:w-24 h-full bg-gradient-to-l from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
           
           {/* Scrolling container */}
           <div className="flex overflow-hidden">
