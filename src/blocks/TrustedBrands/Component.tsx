@@ -65,7 +65,7 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
       <img
         src={logoUrl}
         alt={brand.name || 'Brand logo'}
-        className="h-8 md:h-10 w-auto object-contain transition-all duration-300"
+        className="h-5 md:h-12 w-auto object-contain transition-all duration-300"
       />
     ) : (
       <div className="h-8 md:h-10 w-24 md:w-32 bg-gray-200 rounded flex items-center justify-center">
@@ -110,7 +110,7 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-sm md:text-[20px] font-semibold text-gray-800 mb-4">
+          <h2 className="text-xs md:text-[20px] font-semibold text-gray-800 mb-4">
             {title}
           </h2>
         </div>
@@ -118,8 +118,8 @@ export const TrustedBrandsBlock: React.FC<Props> = ({
         {/* Infinite Scrolling Brands Container */}
         <div className="relative w-full">
           {/* Gradient fade masks */}
-          <div className="absolute left-0 top-0 w-16 md:w-24 h-full bg-gradient-to-r from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-16 md:w-24 h-full bg-gradient-to-l from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute -left-1 top-0 w-16 md:w-24 h-full bg-gradient-to-r from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute -right-1 top-0 w-16 md:w-24 h-full bg-gradient-to-l from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
           
           {/* Scrolling container */}
           <div className="flex overflow-hidden">

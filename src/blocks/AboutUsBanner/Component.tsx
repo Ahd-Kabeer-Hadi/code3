@@ -11,7 +11,6 @@ type Props = {
 
 export const AboutUsBannerBlock: React.FC<Props> = ({
   className,
-  title = 'ABOUT US',
   subtitle = "See Why We're the Better Choice",
   description = 'No guesswork. Transparent side-by-side comparison to help you choose confidently',
   buttonText = 'See Our Services',
@@ -22,7 +21,7 @@ export const AboutUsBannerBlock: React.FC<Props> = ({
   return (
     <div className={cn('', className)}>
       {/* Mobile Layout */}
-      <div className="md:hidden pb-8 bg-[linear-gradient(-70deg,#000000f1_0%,#C90E1D_12%,transparent_35%)]">
+      <div className="md:hidden pt-10 pb-8 bg-[linear-gradient(-70deg,#000000f1_0%,#C90E1D_12%,transparent_35%)]">
         <div className="mx-auto px-4 pb-8">
           {/* Header Section */}
           <div className="mb-8">

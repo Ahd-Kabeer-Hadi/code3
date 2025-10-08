@@ -200,7 +200,7 @@ export const Header: GlobalConfig = {
           name: 'showMegaMenu',
           type: 'checkbox',
           label: 'Show Digital Services Button',
-          defaultValue: true,
+          defaultValue: false,
         },
         {
           name: 'megaMenuLabel',
